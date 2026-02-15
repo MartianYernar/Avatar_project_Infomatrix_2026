@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RobotStatus",
+  "description": "Real-time robot state / telemetry",
+  "type": "object",
+  "properties": {
+    "battery_level": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Battery percentage (0-100)"
+    },
+    "connection_latency": {
+      "type": "number",
+      "description": "Connection latency in milliseconds"
+    },
+    "motor_temperatures": {
+      "type": "array",
+      "items": { "type": "number" },
+      "description": "Temperature readings per motor (°C)"
+    },
+    "joint_angles": {
+      "type": "array",
+      "items": { "type": "number" },
+      "description": "Joint angles in degrees"
+    },
+    "grip_force": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Current grip force (0-100)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["online", "offline", "error", "standby"],
+      "description": "Current robot status"
+    },
+    "active_alerts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of active alert messages"
+    }
+  },
+  "required": ["status"]
+}

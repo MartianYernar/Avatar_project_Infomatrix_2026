@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TaskLog",
+  "description": "Database schema for task history",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Auto-generated unique identifier"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": ["grab", "place", "return", "manual_move", "emergency_stop"],
+      "description": "Type of action performed"
+    },
+    "object_detected": {
+      "type": "string",
+      "description": "Label of object detected (if any)"
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "Duration of action in milliseconds"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the action completed successfully"
+    },
+    "grip_force_used": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Grip force applied (0-100)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Auto-set creation timestamp"
+    },
+    "updated_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Auto-set last update timestamp"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Auto-set user/system that created the record"
+    }
+  },
+  "required": ["action_type", "success"]
+}
